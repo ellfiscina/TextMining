@@ -1,3 +1,4 @@
 lexico/emolex.csv
+__pycache__/*
 .*
 !/.gitignore
