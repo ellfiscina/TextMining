@@ -121,7 +121,7 @@ function display(data){
                     .append("g");
 
     children.append("rect")
-            .attr("class", "child")
+            .attr("class", d => "child " + d.parent.data.name)
             .call(rect)
             .append("title")
             .text(d => d.data.name + " (" + d.value + ")");
