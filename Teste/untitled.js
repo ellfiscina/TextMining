@@ -66,6 +66,8 @@ function draw(data){
                      .sum(d => d.value);
 
     initialize(treeRoot);
+    accumulate(treeRoot);
+    layout(treeRoot);
     treeLayout(treeRoot);
     display(treeRoot);
 };
@@ -77,8 +79,29 @@ function initialize(root){
     root.depth = 0;
 }
 
+function accumulate(d){
+    if (d._children = d.children){
+        d.value = d.children.reduce((p, v) => p + accumulate(v), 0);
+    }
+    return d.value
+}
+
+function layout(d){
+    if(d._children){
+        d._children.forEach(function(c){
+            c.x0 = d.x0 + c.x0 * d.x1;
+            c.y0 = d.y0 + c.y0 * d.y1;
+            c.x1 *= d.x1;
+            c.y1 *= d.y1;
+            c.parent = d;
+            layout(c);
+        });
+    }
+}
+
 function display(data){
     grandparent.datum(data.parent)
+               .on("click", transition)
                .select("text")
                .text(name(data));
 
@@ -87,15 +110,16 @@ function display(data){
                 .attr("class", "depth");
 
     var g = g1.selectAll("g")
-              .data(data.children)
+              .data(data._children)
               .enter()
               .append("g");
 
-    g.filter(d => d.children)
-     .classed("children", true);
+    g.filter(d => d._children)
+     .classed("children", true)
+     .on("click", transition);
 
     var children = g.selectAll(".child")
-                    .data(d => d.children || [d])
+                    .data(d => d._children || [d])
                     .enter()
                     .append("g");
 
@@ -129,6 +153,40 @@ function display(data){
     g.selectAll("rect.parent")
      .style("fill", d => color(d.data.name))
      .style("opacity", ".8");
+
+     function transition(d){
+        if (transitioning || !d) return;
+        transitioning = true;
+
+        var g2 = display(d);
+        var t1 = g1.transition().duration(750);
+        var t2 = g2.transition().duration(750);
+
+        x.domain([d.x, d.x + d.dx]);
+        y.domain([d.y, d.y + d.dy]);
+
+        svg.style("shape-rendering", null);
+
+        svg.selectAll(".depth").sort(function(a, b){
+            return a.depth - b.depth;
+        });
+
+        // g2.selectAll("text").style("fill-opacity", 0);
+
+        t1.selectAll(".ptext").call(text).style("fill-opacity", 0);
+        t1.selectAll(".ctext").call(text2).style("fill-opacity", 0);
+        t2.selectAll(".ptext").call(text).style("fill-opacity", 1);
+        t2.selectAll(".ctext").call(text2).style("fill-opacity", 1);
+        t1.selectAll(".rect").call(rect);
+        t2.selectAll(".rect").call(rect);
+
+        t1.remove().each("end", function(){
+          svg.style("shape-rendering", "crispEdges");
+          transitioning = false;  
+        });
+     }
+
+     return g;
 }
 
 function rect(rect){
