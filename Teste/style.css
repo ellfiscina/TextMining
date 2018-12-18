@@ -1,37 +1,120 @@
-rect {
-  stroke: white;
-}
-svg {
+#tree {
   width: 100%;
-  height: 800px;
+  height: 460px;
+  margin-top: 20px;
+  position: relative;
+  pointer-events: all;
+  font-family: helvetica,arial, sans-serif;
+}
+
+h1,h2,h3,h4,p, em {
+  font-family: helvetica, arial, sans-serif;
+}
+
+text {
+  pointer-events: all;
+}
+
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+
+.grandparent text {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+rect {
+  stroke: #eee;
+  stroke-width: 1.5px;
+}
+
+rect.parent,
+.grandparent rect {
+  stroke-width: 1.5px;
+}
+
+.grandparent rect {
+  fill: #dadfe1;
+  text-align: center;
+}
+
+.grandparent:hover rect {
+  fill: #f0f0f0;
+}
+
+.children rect.parent,
+.grandparent rect {
+  cursor: pointer;
+}
+
+.children rect.child {
+  opacity: 1;
+}
+
+.children rect.parent {
+  opacity: 1;
+}
+
+.children:hover rect.child {
+  opacity: 1;
+  stroke-width: 1.5px;
+}
+
+.children:hover rect.parent {
+  opacity: .5;
+}
+
+.textdiv {
+  font-size: 14px;
+  padding: 5px;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 50%;
+  height: 285px;
+  line-height: 14px;
+  padding: 0px;
+  font-size: 14px;
+  font-weight: normal;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, .95);
+  pointer-events: none;
 }
 .positivo{
-  background-color: #f1a9a0;
+  fill: #e08283;
 }
 .negativo{
-  background-color: #95a5a6 ;
+  fill: #95a5a6;
 }
 .alegria{
-  background-color: #fef160 ;
+  fill: #f5d76e;
 }
 .tristeza{
-  background-color: #1f3a93 ;
+  fill: #2c82c9;
 }
 .nojo{
-  background-color: #bf55ec ;
+  fill: #be90d4;
 }
 .antecipação{
-  background-color: #f89406 ;
+  fill: #f89406;
 }
 .medo{
-  background-color: #26a65b ;
+  fill: #26a65b;
 }
 .surpresa{
-  background-color: #81cfe0 ;
+  fill: #52b3d9;
 }
 .confiança{
-  background-color: #87d37c ;
+  fill: #87d37c;
 }
 .raiva{
-  background-color: #f22613;
+  fill: #d64541;
 }

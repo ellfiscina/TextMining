@@ -25,7 +25,7 @@ var treemap = d3.layout.treemap()
                        .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
                        .round(false);
 
-var svg = d3.select("#chart")
+var svg = d3.select("#tree")
             .append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.bottom + margin.top)
@@ -35,7 +35,7 @@ var svg = d3.select("#chart")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .style("shape-rendering", "crispEdges");
 
-var div = d3.select("#chart")
+var div = d3.select("#tree")
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
@@ -123,7 +123,11 @@ function main(root) {
     });
 
     g.append("rect")
-     .attr("class", "parent")
+     .attr("class", function(d){ 
+      return d.parent.name == 'emotion'
+        ? "parent " + d.name
+        : "parent " + d.parent.name;
+      })
      .call(rect)
      .append("title")
      .text(d => d.value);
@@ -134,7 +138,7 @@ function main(root) {
      .attr("class","foreignobj")
      .append("xhtml:div")
      .attr("dy", ".75em")
-     .html(function(d) {  if(parseInt( x(d.x + d.dx) - x(d.x) ) >130 ) return d.name + ": " + d.value; else return ""; })
+     .html(function(d) {  if(parseInt( x(d.x + d.dx) - x(d.x) ) >   50 ) return d.name + ": " + d.value; else return ""; })
      .attr("class","textdiv");
 
 
@@ -149,9 +153,10 @@ function main(root) {
                          .attr("y", 25 - margin.top)
                          .text("\uF106")
                          .style("opacity", 0);
+
       arrow.transition()
            .duration(500)
-           .style("opacity", 1)
+           .style("opacity", 1);
 
       g.selectAll(".child")
        .data(d => d.parent._children || [d])
@@ -201,6 +206,10 @@ function main(root) {
       if (transitioning || !d) return;
       transitioning = true;
 
+      arrow.transition()
+           .duration(500)
+           .style("opacity", 0  );
+
       var g2 = display(d),
           t1 = g1.transition().duration(750),
           t2 = g2.transition().duration(750);
@@ -240,23 +249,23 @@ function main(root) {
 
   function rect(rect) {
     rect.attr("x", d => x(d.x))
-       .attr("y", d => y(d.y))
-       .attr("width", d => x(d.x + d.dx) - x(d.x))
-       .attr("height", d => y(d.y + d.dy) - y(d.y))
-       .attr("fill", d => isNaN((parseFloat(d.amount2017)/parseFloat(d.amount2016)-1)*100) ? color(0) : color((parseFloat(d.amount2017)/parseFloat(d.amount2016)-1)*100));
-  }
-
-
-  function foreign(foreign){ /* added */
-        foreign.attr("x", d => x(d.x))
         .attr("y", d => y(d.y))
         .attr("width", d => x(d.x + d.dx) - x(d.x))
-        .attr("height", d => y(d.y + d.dy) - y(d.y));
+        .attr("height", d => y(d.y + d.dy) - y(d.y))
+        .attr("fill", "#eeeeee");
+  } 
+
+
+  function foreign(foreign){
+    foreign.attr("x", d => x(d.x))
+           .attr("y", d => y(d.y))
+           .attr("width", d => x(d.x + d.dx) - x(d.x))
+           .attr("height", d => y(d.y + d.dy) - y(d.y));
   }
 
   function name(d) {
     return d.parent
-        ? d.name + ": "+ d.value
-        : d.name + ": "+ d.value;
+      ? d.name + ": "+ d.value
+      : d.name + ": "+ d.value;
   }
 }

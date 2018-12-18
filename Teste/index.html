@@ -4,129 +4,13 @@
   <meta charset="utf-8">
   <meta name=viewport content="width=device-width, initial-scale=1">
   <title>Testes</title>
-
-    <style>
-    #chart {
-  width: 100%;
-  height: 460px;
-  margin-top: -80px;
-  position: relative;
-  pointer-events: all;
-  font-family: helvetica,arial, sans-serif;
-}
-
-#legend {
-    width: 100%;
-    height: 20px;
-    margin: 25px auto;
-    position: relative;
-    font-family: helvetica,arial, sans-serif;
-
-}
-
-
-h1,h2,h3,h4,p, em {
-  font-family: helvetica, arial, sans-serif;
-}
-
-text {
-  pointer-events: all;
-}
-
-.alignleft {
-	float: left;
-}
-.alignright {
-	float: right;
-}
-
-.grandparent text {
-  font-weight: bold;
-  font-size: 22px;
-}
-
-rect {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-
-rect.parent,
-.grandparent rect {
-  stroke-width: 1.5px;
-}
-
-.grandparent rect {
-  fill: #bbb;
-  text-align: center;
-}
-
-.grandparent:hover rect {
-  fill: #f0f0f0;
-}
-
-.children rect.parent,
-.grandparent rect {
-  cursor: pointer;
-}
-
-.children rect.child {
-  opacity: 1;
-}
-
-.children rect.parent {
-	opacity: 1;
-}
-
-.children:hover rect.child {
-  opacity: 1;
-  stroke-width: 1.5px;
-}
-
-.children:hover rect.parent {
-  opacity: .5;
-}
-
-.legend rect {
-  stroke-width: 0px;
-}
-
-.legend text {
-  text-anchor: middle;
-  font-size: 11px;
-  fill: black;
-}
-
-.textdiv { /* text in the boxes */
-	font-size: 14px;
-	padding: 5px;
-}
-
-div.tooltip {
-  position: absolute;
-  text-align: center;
-  width: 50%;
-  height: 285px;
-  line-height: 14px;
-  padding: 0px;
-  font-size: 14px;
-  font-weight: normal;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px;
-  border-radius: 8px;
-  color: rgba(255, 255, 255, .95);
-  pointer-events: none;
-}
-
-
-  </style>
+  <link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
-  <div id="chart"></div>
-<div id="legend"></div>
-
+  <div id="tree"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.5/d3.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="data.json"></script>
   <script type="text/javascript" src="main.js"></script>
 </body>
