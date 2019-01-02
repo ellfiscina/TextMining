@@ -1,215 +1,196 @@
-var margin = {top: 20, right: 0, bottom: 0, left: 0};
-var width = 1200;
-var height = 650;
+var common = [{'text': 'aurélia', 'size': 623},
+ {'text': 'seixas', 'size': 457},
+ {'text': 'é', 'size': 397},
+ {'text': 'moça', 'size': 270},
+ {'text': 'marido', 'size': 216},
+ {'text': 'ainda', 'size': 168},
+ {'text': 'mulher', 'size': 167},
+ {'text': 'casa', 'size': 144},
+ {'text': 'havia', 'size': 137},
+ {'text': 'fernando', 'size': 131},
+ {'text': 'amor', 'size': 121},
+ {'text': 'disse', 'size': 116},
+ {'text': 'senhor', 'size': 111},
+ {'text': 'lemos', 'size': 111},
+ {'text': 'tempo', 'size': 110},
+ {'text': 'alma', 'size': 110},
+ {'text': 'casamento', 'size': 109},
+ {'text': 'noite', 'size': 109},
+ {'text': 'senhora', 'size': 102},
+ {'text': 'onde', 'size': 102},
+ {'text': 'pois', 'size': 100},
+ {'text': 'tão', 'size': 98},
+ {'text': 'ser', 'size': 98},
+ {'text': 'vez', 'size': 97},
+ {'text': 'homem', 'size': 96},
+ {'text': 'porém', 'size': 95},
+ {'text': 'então', 'size': 94},
+ {'text': 'sobre', 'size': 92},
+ {'text': 'olhos', 'size': 90},
+ {'text': 'sala', 'size': 90},
+ {'text': 'bem', 'size': 89},
+ {'text': 'dessa', 'size': 89},
+ {'text': 'momento', 'size': 88},
+ {'text': 'antes', 'size': 85},
+ {'text': 'si', 'size': 85},
+ {'text': 'velho', 'size': 77},
+ {'text': 'palavras', 'size': 76},
+ {'text': 'mão', 'size': 76},
+ {'text': 'vida', 'size': 76},
+ {'text': 'assim', 'size': 75},
+ {'text': 'firmina', 'size': 74},
+ {'text': 'nunca', 'size': 73},
+ {'text': 'outra', 'size': 71},
+ {'text': 'desde', 'size': 70},
+ {'text': 'porta', 'size': 70},
+ {'text': 'mãe', 'size': 70},
+ {'text': 'dia', 'size': 69},
+ {'text': 'olhar', 'size': 69},
+ {'text': 'todo', 'size': 67},
+ {'text': 'outro', 'size': 67},
+ {'text': 'ter', 'size': 67},
+ {'text': 'agora', 'size': 66},
+ {'text': 'todos', 'size': 65},
+ {'text': 'podia', 'size': 65},
+ {'text': 'moço', 'size': 65},
+ {'text': 'mundo', 'size': 63},
+ {'text': 'menina', 'size': 62},
+ {'text': 'talvez', 'size': 62},
+ {'text': 'braço', 'size': 60},
+ {'text': 'sociedade', 'size': 60},
+ {'text': 'alguma', 'size': 59},
+ {'text': 'tarde', 'size': 59},
+ {'text': 'ia', 'size': 58},
+ {'text': 'logo', 'size': 57},
+ {'text': 'nesse', 'size': 56},
+ {'text': 'instante', 'size': 56},
+ {'text': 'tudo', 'size': 55},
+ {'text': 'espírito', 'size': 55},
+ {'text': 'vezes', 'size': 55},
+ {'text': 'sempre', 'size': 54},
+ {'text': 'contos', 'size': 53},
+ {'text': 'lábios', 'size': 53},
+ {'text': 'camargo', 'size': 53},
+ {'text': 'meio', 'size': 52},
+ {'text': 'papel', 'size': 52},
+ {'text': 'nessa', 'size': 52},
+ {'text': 'adelaide', 'size': 52},
+ {'text': 'algum', 'size': 52},
+ {'text': 'senão', 'size': 52},
+ {'text': 'palavra', 'size': 52},
+ {'text': 'cabeça', 'size': 52},
+ {'text': 'mim', 'size': 52},
+ {'text': 'dias', 'size': 51},
+ {'text': 'voz', 'size': 51},
+ {'text': 'razão', 'size': 51},
+ {'text': 'duas', 'size': 51},
+ {'text': 'ali', 'size': 51},
+ {'text': 'toda', 'size': 50},
+ {'text': 'família', 'size': 49},
+ {'text': 'dinheiro', 'size': 49},
+ {'text': 'mesma', 'size': 48},
+ {'text': 'cousa', 'size': 48},
+ {'text': 'posição', 'size': 48},
+ {'text': 'fez', 'size': 48},
+ {'text': 'fazer', 'size': 47},
+ {'text': 'perguntou', 'size': 47},
+ {'text': 'sorriso', 'size': 46},
+ {'text': 'viúva', 'size': 46},
+ {'text': 'emília', 'size': 46},
+ {'text': 'todas', 'size': 46},
+ {'text': 'menos', 'size': 46},
+ {'text': 'maior', 'size': 45},
+ {'text': 'apenas', 'size': 45},
+ {'text': 'coração', 'size': 45},
+ {'text': 'desse', 'size': 45},
+ {'text': 'parte', 'size': 45},
+ {'text': 'direito', 'size': 44},
+ {'text': 'modo', 'size': 44},
+ {'text': 'devia', 'size': 44},
+ {'text': 'respondeu', 'size': 43},
+ {'text': 'neste', 'size': 43},
+ {'text': 'pode', 'size': 43},
+ {'text': 'nada', 'size': 43},
+ {'text': 'beleza', 'size': 42},
+ {'text': 'primeiro', 'size': 42},
+ {'text': 'aqui', 'size': 42},
+ {'text': 'primeira', 'size': 42},
+ {'text': 'paixão', 'size': 42},
+ {'text': 'horas', 'size': 42},
+ {'text': 'pouco', 'size': 42},
+ {'text': 'quanto', 'size': 41},
+ {'text': 'gesto', 'size': 41},
+ {'text': 'semblante', 'size': 41},
+ {'text': 'toucador', 'size': 40},
+ {'text': 'idéia', 'size': 40},
+ {'text': 'ribeiro', 'size': 39},
+ {'text': 'pessoa', 'size': 39},
+ {'text': 'luz', 'size': 38},
+ {'text': 'mesa', 'size': 38},
+ {'text': 'tanto', 'size': 38},
+ {'text': 'melhor', 'size': 38},
+ {'text': 'deu', 'size': 37},
+ {'text': 'outras', 'size': 37},
+ {'text': 'sofá', 'size': 37},
+ {'text': 'hora', 'size': 37},
+ {'text': 'qualquer', 'size': 37},
+ {'text': 'aí', 'size': 36},
+ {'text': 'rua', 'size': 36},
+ {'text': 'outros', 'size': 36},
+ {'text': 'ocasião', 'size': 35},
+ {'text': 'réis', 'size': 35},
+ {'text': 'verdade', 'size': 35},
+ {'text': 'algumas', 'size': 35},
+ {'text': 'porque', 'size': 35},
+ {'text': 'certo', 'size': 34},
+ {'text': 'quer', 'size': 34},
+ {'text': 'apesar', 'size': 34},
+ {'text': 'ninguém', 'size': 34},
+ {'text': 'felicidade', 'size': 34},
+ {'text': 'riqueza', 'size': 34}];
 
-var x = d3.scaleLinear()
-          .domain([0, width])
-          .range([0, width]);
+var diameter = 600;
+var color = d3.scale.category20b();
 
-var y = d3.scaleLinear()
-          .domain([0, height - margin.top - margin.bottom])
-          .range([0, height - margin.top - margin.bottom]);
-            //[positivo, negativo, alegria, tristeza, nojo,
-            // antecipação, medo, surpresa, confiança, raiva]
-var emotion = ["#f1a9a0", "#95a5a6", "#fef160", "#1f3a93", "#bf55ec",
-               "#f89406", "#26a65b", "#81cfe0", "#87d37c", "#f22613"]
-var color = d3.scaleOrdinal()
-              .range(emotion);
+var bubble = d3.layout
+               .pack()
+               .sort(null)
+               .size([diameter, diameter])
+               .padding(5);
 
-var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); };
+var svg = d3.select('#tree')
+            .append('svg')
+            .attr('width', diameter)
+            .attr('height', diameter)
+            .attr('class', 'bubble')
 
-var treeLayout, transitioning;
+function main(data){
+    data = data.map(d => { d.value = d.size; return d; });
 
-var svg, grandparent;
+    var nodes = bubble.nodes({children:data})
+                      .filter(d => !d.children)
 
-draw(data);
+    var bubbles = svg.append('g')
+                     .attr('transform', 'translate(0,0)')
+                     .selectAll('.bubble')
+                     .data(nodes)
+                     .enter();
 
-function draw(data){
-    if (svg){
-        svg.selectAll("*").remove();
-    }
-    else{
-        svg = d3.select('#treemap')
-                .append('svg')
-                .attr("width", width - margin.left - margin.right)
-                .attr("height", height - margin.bottom - margin.top)
-                .style("margin-left", -margin.left + "px")
-                .style("margin.right", -margin.right + "px")
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-                .style("shape-rendering", "crispEdges");
+    bubbles.append('circle')
+           .attr('r', d => d.r)
+           .attr('cx', d => d.x)
+           .attr('cy', d => d.y)
+           .style('fill', d => color(d.value))
 
-
-        grandparent = svg.append("g")
-                         .attr("class", "grandparent");
-
-        grandparent.append("rect")
-                   .attr("y", -margin.top)
-                   .attr("width", width)
-                   .attr("height", margin.top)
-                   .style("fill", "none");
-
-        grandparent.append("text")
-                   .attr("x", 6)
-                   .attr("y", 6 - margin.top)
-                   .attr("dy", ".75em");
-
-        treeLayout = d3.treemap()
-                       .size([width, height])
-                       .paddingInner(1);
-    }
-
-    var treeRoot = d3.hierarchy(data)
-                     .eachBefore(
-                        d => d.id = (d.parent ? d.parent.id + "." : "") + d.data.name
-                     )
-                     .sum(d => d.value);
-
-    initialize(treeRoot);
-    accumulate(treeRoot);
-    layout(treeRoot);
-    treeLayout(treeRoot);
-    display(treeRoot);
-};
-
-function initialize(root){
-    root.x = root.y = 0;
-    root.x1 = width;
-    root.y1 = height;
-    root.depth = 0;
+    bubbles.append('text')
+           .attr('x', d => d.x)
+           .attr('y', d => d.y + 5)
+           .attr('text-anchor', 'middle')
+           .text(d => d.text)
 }
 
-function accumulate(d){
-    if (d._children = d.children){
-        d.value = d.children.reduce((p, v) => p + accumulate(v), 0);
-    }
-    return d.value
-}
 
-function layout(d){
-    if(d._children){
-        d._children.forEach(function(c){
-            c.x0 = d.x0 + c.x0 * d.x1;
-            c.y0 = d.y0 + c.y0 * d.y1;
-            c.x1 *= d.x1;
-            c.y1 *= d.y1;
-            c.parent = d;
-            layout(c);
-        });
-    }
-}
-
-function display(data){
-    grandparent.datum(data.parent)
-               .on("click", transition)
-               .select("text")
-               .text(name(data));
-
-    var g1 = svg.insert("g", ".grandparent")
-                .datum(data)
-                .attr("class", "depth");
-
-    var g = g1.selectAll("g")
-              .data(data._children)
-              .enter()
-              .append("g");
-
-    g.filter(d => d._children)
-     .classed("children", true)
-     .on("click", transition);
-
-    var children = g.selectAll(".child")
-                    .data(d => d._children || [d])
-                    .enter()
-                    .append("g");
-
-    children.append("rect")
-            .attr("class", d => "child " + d.parent.data.name)
-            .call(rect)
-            .append("title")
-            .text(d => d.data.name + " (" + d.value + ")");
-
-    children.append("text")
-            .attr("class", "ctext")
-            .text(d => d.data.name)
-            .style("fill-opacity", 0)
-            .call(text2);
-
-    g.append("rect")
-     .attr("class", "parent")
-     .call(rect)
-
-    var t = g.append("text")
-             .attr("class", "ptext")
-             .attr("dy", ".75em");
-
-    t.append("tspan")
-     .text(d => d.data.name);
-    t.append("tspan")
-     .attr("dy", "1.0em")
-     .text(d => d.value);
-    t.call(text);
-
-    g.selectAll("rect.parent")
-     .style("fill", d => color(d.data.name))
-     .style("opacity", ".8");
-
-     function transition(d){
-        if (transitioning || !d) return;
-        transitioning = true;
-
-        var g2 = display(d);
-        var t1 = g1.transition().duration(750);
-        var t2 = g2.transition().duration(750);
-
-        x.domain([d.x, d.x + d.dx]);
-        y.domain([d.y, d.y + d.dy]);
-
-        svg.style("shape-rendering", null);
-
-        svg.selectAll(".depth").sort(function(a, b){
-            return a.depth - b.depth;
-        });
-
-        // g2.selectAll("text").style("fill-opacity", 0);
-
-        t1.selectAll(".ptext").call(text).style("fill-opacity", 0);
-        t1.selectAll(".ctext").call(text2).style("fill-opacity", 0);
-        t2.selectAll(".ptext").call(text).style("fill-opacity", 1);
-        t2.selectAll(".ctext").call(text2).style("fill-opacity", 1);
-        t1.selectAll(".rect").call(rect);
-        t2.selectAll(".rect").call(rect);
-
-        t1.remove().each("end", function(){
-          svg.style("shape-rendering", "crispEdges");
-          transitioning = false;  
-        });
-     }
-
-     return g;
-}
-
-function rect(rect){
-    rect.attr('x', d => d.x0)
-        .attr('y', d => d.y0)
-        .attr('width', d => d.x1 - d.x0)
-        .attr('height', d => d.y1 - d.y0);
-}
-
-function text2(text) {
-    text.attr("x", d => d.x0 + d.x1 - 6)
-        .attr("y", d => d.y0 + d.y1 - 6);
-}
-
-function text(text){
-    text.selectAll("tspan")
-        .attr("x", d => d.x0 + 6);
-    text.attr("x", d => d.x0 + 6)
-        .attr("y", d => d.y0 + 10);
-}
-
-function name(data){
-    return data.parent
-        ? name(data.parent) + " /" + data.data.name + " (" + data.value + ")"
-        : data.data.name + " (" + data.value + ")";
-}
+$(document).ready(function() {
+    console.log((common))
+    main(common);
+});
